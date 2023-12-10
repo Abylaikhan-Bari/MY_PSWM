@@ -66,7 +66,7 @@ class PasswordManager
 
         while (!exitSession)
         {
-            Console.WriteLine("\n1. Add Entry\n2. View Entries\n3. View Password\n4. Search Entry\n5. Generate Random Password\n6. Copy Password to Clipboard\n7. Sign Out\n8. Exit Application");
+            Console.WriteLine("\n1. Add Entry\n2. View Entries\n3. View Password\n4. Search Entry\n5. Generate Random Password\n6. Copy Password to Clipboard\n7. Change Master Password\n8. Sign Out\n9. Exit Application");
             Console.Write("Choose an option: ");
             string option = Console.ReadLine();
 
@@ -91,15 +91,19 @@ class PasswordManager
                     CopyPasswordToClipboard();
                     break;
                 case "7":
+                    ChangeMasterPassword();
+                    break;
+                case "8":
                     exitSession = true;
                     currentUserId = -1;
                     Console.WriteLine("You have been signed out.");
                     break;
-                case "8":
+                case "9":
                     exitSession = true;
                     runApp = false; // Set runApp to false to exit the application
                     Console.WriteLine("Exiting application.");
                     break;
+                
                 default:
                     Console.WriteLine("Invalid option.");
                     break;
@@ -173,6 +177,53 @@ class PasswordManager
             }
         }
     }
+    private void ChangeMasterPassword()
+{
+    Console.Write("Enter your current password: ");
+    string currentPassword = Console.ReadLine();
+    string hashedCurrentPassword = HashPassword(currentPassword);
+
+    using (var connection = new MySqlConnection(connectionString))
+    {
+        // Verify the current password
+        string verifyQuery = "SELECT HashedPassword FROM UserAccounts WHERE UserId = @userId";
+        using (var verifyCommand = new MySqlCommand(verifyQuery, connection))
+        {
+            verifyCommand.Parameters.AddWithValue("@userId", currentUserId);
+            connection.Open();
+            string storedHash = verifyCommand.ExecuteScalar()?.ToString();
+
+            if (storedHash != hashedCurrentPassword)
+            {
+                Console.WriteLine("Incorrect current password.");
+                return;
+            }
+        }
+
+        // Get the new password
+        Console.Write("Enter your new password: ");
+        string newPassword = Console.ReadLine();
+        string hashedNewPassword = HashPassword(newPassword);
+
+        // Update the password in the database
+        string updateQuery = "UPDATE UserAccounts SET HashedPassword = @hashedNewPassword WHERE UserId = @userId";
+        using (var updateCommand = new MySqlCommand(updateQuery, connection))
+        {
+            updateCommand.Parameters.AddWithValue("@hashedNewPassword", hashedNewPassword);
+            updateCommand.Parameters.AddWithValue("@userId", currentUserId);
+
+            int rowsAffected = updateCommand.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Master password changed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to change master password.");
+            }
+        }
+    }
+}
 
     private void AddEntry()
     {
@@ -227,26 +278,36 @@ class PasswordManager
 
         using (var connection = new MySqlConnection(connectionString))
         {
-            string query = "SELECT Password FROM PasswordEntries WHERE UserId = @userId AND Website = @website";
+            string query = "SELECT Login, Password FROM PasswordEntries WHERE UserId = @userId AND Website = @website";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@userId", currentUserId);
                 command.Parameters.AddWithValue("@website", website);
 
                 connection.Open();
-                var result = command.ExecuteScalar();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string login = reader["Login"].ToString();
+                            string encryptedPassword = reader["Password"].ToString();
+                            string decryptedPassword = EncryptDecrypt(encryptedPassword);
 
-                if (result != null)
-                {
-                    Console.WriteLine($"Password: {EncryptDecrypt(result.ToString())}");
-                }
-                else
-                {
-                    Console.WriteLine("Entry not found.");
+                            Console.WriteLine($"Login: {login}, Password: {decryptedPassword}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for the specified website.");
+                    }
                 }
             }
         }
     }
+
+
 
     private void SearchEntry()
     {
@@ -304,21 +365,25 @@ class PasswordManager
     {
         Console.Write("Enter Website: ");
         string website = Console.ReadLine();
+        Console.Write("Enter Login: ");
+        string login = Console.ReadLine();
 
         using (var connection = new MySqlConnection(connectionString))
         {
-            string query = "SELECT Password FROM PasswordEntries WHERE UserId = @userId AND Website = @website";
+            string query = "SELECT Password FROM PasswordEntries WHERE UserId = @userId AND Website = @website AND Login = @login";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@userId", currentUserId);
                 command.Parameters.AddWithValue("@website", website);
+                command.Parameters.AddWithValue("@login", login);
 
                 connection.Open();
                 var result = command.ExecuteScalar();
 
                 if (result != null)
                 {
-                    Clipboard.SetText(EncryptDecrypt(result.ToString()));
+                    string decryptedPassword = EncryptDecrypt(result.ToString());
+                    Clipboard.SetText(decryptedPassword);
                     Console.WriteLine("Password copied to clipboard.");
                 }
                 else
@@ -328,6 +393,7 @@ class PasswordManager
             }
         }
     }
+
 
     private string EncryptDecrypt(string text)
     {
