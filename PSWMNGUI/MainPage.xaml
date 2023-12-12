@@ -1,0 +1,30 @@
+﻿<Page x:Class="PSWMNGUI.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Main Page">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Sidebar -->
+            <ColumnDefinition Width="*"/>
+            <!-- Main content area -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar with buttons -->
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <Button Content="Add Entry" Margin="5" Click="AddEntry_Click"/>
+            <Button Content="View Entries" Margin="5" Click="ViewEntries_Click"/>
+            <Button Content="View Password" Margin="5" Click="ViewPassword_Click"/>
+            <Button Content="Search Entry" Margin="5" Click="SearchEntry_Click"/>
+            <Button Content="Generate Random Password" Margin="5" Click="GenerateRandomPassword_Click"/>
+            <Button Content="Copy Password to Clipboard" Margin="5" Click="CopyPasswordToClipboard_Click"/>
+            <Button Content="Change Master Password" Margin="5" Click="ChangeMasterPassword_Click"/>
+            <Button Content="Sign Out" Margin="5" Click="SignOut_Click"/>
+            <Button Content="Exit Application" Margin="5" Click="ExitApplication_Click"/>
+        </StackPanel>
+
+        <!-- ListBox for displaying entries -->
+        <ListBox x:Name="EntriesListBox" Grid.Column="1" Margin="5"/>
+    </Grid>
+</Page>

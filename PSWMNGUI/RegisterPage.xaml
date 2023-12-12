@@ -1,0 +1,28 @@
+﻿<Page x:Class="PSWMNGUI.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Register Page">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Username -->
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,10,0">Username:</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="UsernameTextBox"/>
+
+        <!-- Password -->
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="0,10,10,0">Password:</TextBlock>
+        <PasswordBox Grid.Column="1" Grid.Row="1" Name="PasswordBox" Margin="0,10,0,0"/>
+
+        <!-- Register Button -->
+        <Button Grid.Column="1" Grid.Row="2" Name="RegisterButton" Content="Register" Click="RegisterButton_Click" Margin="0,20,0,0"/>
+    </Grid>
+</Page>

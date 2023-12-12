@@ -1,0 +1,17 @@
+﻿<Page x:Class="PSWMNGUI.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Login Page">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Username:"/>
+            <TextBox Name="UsernameTextBox" Width="200"/>
+
+            <TextBlock Text="Password:" Margin="0,10,0,0"/>
+            <PasswordBox Name="PasswordBox" Width="200"/>
+
+            <Button Content="Login" Margin="0,20,0,0" Click="LoginButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
