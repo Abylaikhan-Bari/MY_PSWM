@@ -27,7 +27,7 @@ namespace DatabseInsertApp
         private void btnInsert_Click(object sender, EventArgs e)
         {
             // Checks if Username Exists
-            MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM accountinfo.userinfo WHERE Username = @UserName", con);
+            MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM passwordmanagerdb.passwordentries WHERE Username = @UserName", con);
             cmd1.Parameters.AddWithValue("@UserName", txtUsername.Text);
             con.Open();
             bool userExists = false;
@@ -40,7 +40,7 @@ namespace DatabseInsertApp
                 // Adds a User in the Database
                 if (txtUsername.Text != "" && txtPassword.Text != "" && txtID.Text != "")
                 {
-                    cmd = new MySqlCommand("insert into accountinfo.userinfo(ID,Username,Password) values(@id,@name,@pass)", con);
+                    cmd = new MySqlCommand("insert into passwordmanagerdb.passwordentries(ID,Username,Password) values(@id,@name,@pass)", con);
                     con.Open();
                     cmd.Parameters.AddWithValue("@id", txtID.Text);
                     cmd.Parameters.AddWithValue("@name", txtUsername.Text);
@@ -57,30 +57,31 @@ namespace DatabseInsertApp
                 }
             }
         }
+
         // Displays the data in Data Grid View  
         private void DisplayData()
         {
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new MySqlDataAdapter("select * from accountinfo.userinfo", con);
+            adapt = new MySqlDataAdapter("select * from passwordmanagerdb.passwordentries", con);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
         }
+
         // Clears the Data  
         private void ClearData()
         {
             txtID.Text = "";
             txtUsername.Text = "";
             txtPassword.Text = "";
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (txtUsername.Text != "" && txtPassword.Text != "" && txtID.Text != "")
             {
-                cmd = new MySqlCommand("update accountinfo.userinfo set Username=@name, Password=@pass where ID=@id", con);
+                cmd = new MySqlCommand("update passwordmanagerdb.passwordentries set Username=@name, Password=@pass where ID=@id", con);
                 con.Open();
                 cmd.Parameters.AddWithValue("@id", txtID.Text);
                 cmd.Parameters.AddWithValue("@name", txtUsername.Text);
@@ -101,7 +102,7 @@ namespace DatabseInsertApp
         {
             if (txtUsername.Text != "" && txtPassword.Text != "" && txtID.Text != "")
             {
-                cmd = new MySqlCommand("delete from accountinfo.userinfo where ID=@id", con);
+                cmd = new MySqlCommand("delete from passwordmanagerdb.passwordentries where ID=@id", con);
                 con.Open();
                 cmd.Parameters.AddWithValue("@id", txtID.Text);
                 cmd.ExecuteNonQuery();
