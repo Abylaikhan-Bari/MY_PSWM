@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using PasswordManagerApp;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DatabseInsertApp
 {
@@ -462,9 +465,91 @@ namespace DatabseInsertApp
 
         }
 
-        private void btnImportDatabase_Click(object sender, EventArgs e)
+        private void btnExportDatabase_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Query the database to retrieve data for the current user's entries
+                List<PasswordEntry> entriesToExport = RetrieveEntriesForCurrentUser();
 
+                // Serialize the retrieved data to JSON format
+                string jsonData = SerializeToJson(entriesToExport);
+
+                // Specify the file path where you want to save the JSON data
+                string filePath = "C:\\Users\\Abylaikhan Bari\\source\\repos\\PasswordManagerApp\\PasswordManagerApp\\ExportedData\\exported_data.json";
+
+                // Save the JSON data to the specified file
+                File.WriteAllText(filePath, jsonData);
+
+                MessageBox.Show("Data exported successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting data: {ex.Message}");
+            }
         }
+
+
+        private List<PasswordEntry> RetrieveEntriesForCurrentUser()
+        {
+            List<PasswordEntry> entries = new List<PasswordEntry>();
+
+            using (var connection = new MySqlConnection(con.ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT Website, Login, Password FROM PasswordEntries WHERE UserId = @userId";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", GetCurrentUserId());
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string website = reader.GetString(0);
+                            string login = reader.GetString(1);
+                            string password = reader.GetString(2);
+
+                            // Create a PasswordEntry object and add it to the list
+                            entries.Add(new PasswordEntry { Website = website, Login = login, Password = password });
+                        }
+                    }
+                }
+            }
+
+            return entries;
+        }
+
+        private string SerializeToJson(List<PasswordEntry> entries)
+        {
+            // Serialize the list of PasswordEntry objects to JSON format
+            string jsonData = JsonConvert.SerializeObject(entries, Formatting.Indented);
+            return jsonData;
+        }
+
+        //private string EncryptDecrypt(string text, char xorKey)
+        //{
+        //    // Implement XOR encryption/decryption logic
+        //    var encryptedText = new string(text.ToCharArray().Select(c => (char)(c ^ xorKey)).ToArray());
+        //    return encryptedText;
+        //}
+
+        //private void SaveEncryptedDataToFile(string encryptedData)
+        //{
+        //    // Specify the file path where you want to save the encrypted data (e.g., "exported_data.json")
+        //    string filePath = "C:\\Users\\Abylaikhan Bari\\source\\repos\\PasswordManagerApp\\PasswordManagerApp\\ExportedData\\exported_data.json";
+
+        //    // Save the encrypted data to the specified file
+        //    File.WriteAllText(filePath, encryptedData);
+        //}
+
+        // Define the PasswordEntry class to represent the data structure
+        public class PasswordEntry
+        {
+            public string Website { get; set; }
+            public string Login { get; set; }
+            public string Password { get; set; }
+        }
+
     }
 }

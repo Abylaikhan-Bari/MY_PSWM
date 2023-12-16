@@ -1,0 +1,37 @@
+[
+  {
+    "Website": "google.com",
+    "Login": "Alex",
+    "Password": "\t\u001d\b1~\u0000\r\u001c11\u001e*"
+  },
+  {
+    "Website": "joo.kz",
+    "Login": "Kelly",
+    "Password": "!*%*"
+  },
+  {
+    "Website": "youtube.com",
+    "Login": "Mike",
+    "Password": "=3x.\u001a.\u000e{\u001e\u0011"
+  },
+  {
+    "Website": "what.com",
+    "Login": "John",
+    "Password": "\u0005\"/(\u001f\u000f?.\u0002-'3"
+  },
+  {
+    "Website": "google.com",
+    "Login": "Mike",
+    "Password": "&\" .2"
+  },
+  {
+    "Website": "google.com",
+    "Login": "Kate",
+    "Password": " *?\"."
+  },
+  {
+    "Website": "google.com",
+    "Login": "Sarah",
+    "Password": ";-??,\u001es\u0001\u0005{\r\u0007"
+  }
+]

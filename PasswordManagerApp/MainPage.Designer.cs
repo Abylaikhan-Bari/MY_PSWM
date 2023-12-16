@@ -49,7 +49,7 @@
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.btnDeleteEntry = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnImportDatabase = new System.Windows.Forms.Button();
+            this.btnExportDatabase = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -280,17 +280,17 @@
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // btnImportDatabase
+            // btnExportDatabase
             // 
-            this.btnImportDatabase.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnImportDatabase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportDatabase.Location = new System.Drawing.Point(344, 399);
-            this.btnImportDatabase.Name = "btnImportDatabase";
-            this.btnImportDatabase.Size = new System.Drawing.Size(97, 57);
-            this.btnImportDatabase.TabIndex = 24;
-            this.btnImportDatabase.Text = "Import Database";
-            this.btnImportDatabase.UseVisualStyleBackColor = false;
-            this.btnImportDatabase.Click += new System.EventHandler(this.btnImportDatabase_Click);
+            this.btnExportDatabase.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnExportDatabase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDatabase.Location = new System.Drawing.Point(344, 399);
+            this.btnExportDatabase.Name = "btnExportDatabase";
+            this.btnExportDatabase.Size = new System.Drawing.Size(97, 57);
+            this.btnExportDatabase.TabIndex = 24;
+            this.btnExportDatabase.Text = "Export Database";
+            this.btnExportDatabase.UseVisualStyleBackColor = false;
+            this.btnExportDatabase.Click += new System.EventHandler(this.btnExportDatabase_Click);
             // 
             // MainPage
             // 
@@ -298,7 +298,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(835, 585);
-            this.Controls.Add(this.btnImportDatabase);
+            this.Controls.Add(this.btnExportDatabase);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDeleteEntry);
             this.Controls.Add(this.btnCloseApp);
@@ -354,6 +354,6 @@
         private System.Windows.Forms.Button btnCloseApp;
         private System.Windows.Forms.Button btnDeleteEntry;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnImportDatabase;
+        private System.Windows.Forms.Button btnExportDatabase;
     }
 }
