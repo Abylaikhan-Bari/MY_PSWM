@@ -36,7 +36,7 @@ class PasswordManager
 
             while (!isAuthenticated && runApp) // Check if runApp is still true
             {
-                Console.WriteLine("\n1. Login\n2. Register\n3. Exit Application");
+                Console.WriteLine("\n************\n1. Login\n************\n2. Register\n************\n3. Exit Application\n************");
                 Console.Write("Choose an option: ");
                 var option = Console.ReadLine();
 
@@ -66,7 +66,7 @@ class PasswordManager
 
         while (!exitSession)
         {
-            Console.WriteLine("\n1. Add Entry\n2. View Entries\n3. View Password\n4. Search Entry\n5. Generate Random Password\n6. Copy Password to Clipboard\n7. Change Master Password\n8. Sign Out\n9. Exit Application");
+            Console.WriteLine("\n************\n1. Add Entry\n************\n2. View Entries\n************\n3. View Password\n************\n4. Search Entry\n************\n5. Generate Random Password\n************\n6. Copy Password to Clipboard\n************\n7. Change Master Password\n************\n8. Sign Out\n************\n9. Exit Application\n************");
             Console.Write("Choose an option: ");
             string option = Console.ReadLine();
 
@@ -236,6 +236,24 @@ class PasswordManager
 
         using (var connection = new MySqlConnection(connectionString))
         {
+            // First, check if an entry with the same website and login already exists
+            string checkQuery = "SELECT COUNT(*) FROM PasswordEntries WHERE UserId = @userId AND Website = @website AND Login = @login";
+            using (var checkCommand = new MySqlCommand(checkQuery, connection))
+            {
+                checkCommand.Parameters.AddWithValue("@userId", currentUserId);
+                checkCommand.Parameters.AddWithValue("@website", website);
+                checkCommand.Parameters.AddWithValue("@login", login);
+
+                connection.Open();
+                int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+                if (count > 0)
+                {
+                    Console.WriteLine("An entry with the same website and login already exists. Please choose a different login.");
+                    return;
+                }
+            }
+
+            // If no existing entry is found, proceed with adding the new entry
             string query = "INSERT INTO PasswordEntries (UserId, Website, Login, Password) VALUES (@userId, @website, @login, @password)";
             using (var command = new MySqlCommand(query, connection))
             {
@@ -244,11 +262,12 @@ class PasswordManager
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
 
-                connection.Open();
                 command.ExecuteNonQuery();
+                Console.WriteLine("Entry added successfully.");
             }
         }
     }
+
 
     private void ViewEntries()
     {
