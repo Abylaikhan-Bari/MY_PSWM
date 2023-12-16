@@ -43,10 +43,13 @@
             this.btnGenerateRandom = new System.Windows.Forms.Button();
             this.btnUpdateEntry = new System.Windows.Forms.Button();
             this.btnViewPassword = new System.Windows.Forms.Button();
-            this.txtSearchEntry = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.txtChangeMasterPassword = new System.Windows.Forms.TextBox();
             this.lblCurrentUser = new System.Windows.Forms.Label();
             this.btnCloseApp = new System.Windows.Forms.Button();
+            this.btnDeleteEntry = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnImportDatabase = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,13 +217,13 @@
             this.btnViewPassword.UseVisualStyleBackColor = false;
             this.btnViewPassword.Click += new System.EventHandler(this.btnViewPassword_Click);
             // 
-            // txtSearchEntry
+            // txtSearch
             // 
-            this.txtSearchEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchEntry.Location = new System.Drawing.Point(313, 265);
-            this.txtSearchEntry.Name = "txtSearchEntry";
-            this.txtSearchEntry.Size = new System.Drawing.Size(170, 35);
-            this.txtSearchEntry.TabIndex = 17;
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(313, 265);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(170, 35);
+            this.txtSearch.TabIndex = 17;
             // 
             // txtChangeMasterPassword
             // 
@@ -253,16 +256,55 @@
             this.btnCloseApp.UseVisualStyleBackColor = false;
             this.btnCloseApp.Click += new System.EventHandler(this.btnCloseApp_Click_1);
             // 
+            // btnDeleteEntry
+            // 
+            this.btnDeleteEntry.BackColor = System.Drawing.Color.Brown;
+            this.btnDeleteEntry.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteEntry.Location = new System.Drawing.Point(172, 327);
+            this.btnDeleteEntry.Name = "btnDeleteEntry";
+            this.btnDeleteEntry.Size = new System.Drawing.Size(115, 48);
+            this.btnDeleteEntry.TabIndex = 22;
+            this.btnDeleteEntry.Text = "Delete Entry";
+            this.btnDeleteEntry.UseVisualStyleBackColor = false;
+            this.btnDeleteEntry.Click += new System.EventHandler(this.btnDeleteEntry_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(355, 327);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 48);
+            this.btnClear.TabIndex = 23;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnImportDatabase
+            // 
+            this.btnImportDatabase.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnImportDatabase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportDatabase.Location = new System.Drawing.Point(344, 399);
+            this.btnImportDatabase.Name = "btnImportDatabase";
+            this.btnImportDatabase.Size = new System.Drawing.Size(97, 57);
+            this.btnImportDatabase.TabIndex = 24;
+            this.btnImportDatabase.Text = "Import Database";
+            this.btnImportDatabase.UseVisualStyleBackColor = false;
+            this.btnImportDatabase.Click += new System.EventHandler(this.btnImportDatabase_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(835, 585);
+            this.Controls.Add(this.btnImportDatabase);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnDeleteEntry);
             this.Controls.Add(this.btnCloseApp);
             this.Controls.Add(this.lblCurrentUser);
             this.Controls.Add(this.txtChangeMasterPassword);
-            this.Controls.Add(this.txtSearchEntry);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnViewPassword);
             this.Controls.Add(this.btnUpdateEntry);
             this.Controls.Add(this.btnGenerateRandom);
@@ -306,9 +348,12 @@
         private System.Windows.Forms.Button btnGenerateRandom;
         private System.Windows.Forms.Button btnUpdateEntry;
         private System.Windows.Forms.Button btnViewPassword;
-        private System.Windows.Forms.TextBox txtSearchEntry;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.TextBox txtChangeMasterPassword;
         private System.Windows.Forms.Label lblCurrentUser;
         private System.Windows.Forms.Button btnCloseApp;
+        private System.Windows.Forms.Button btnDeleteEntry;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnImportDatabase;
     }
 }

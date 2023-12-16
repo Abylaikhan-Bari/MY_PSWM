@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnSearchEntry = new System.Windows.Forms.Button();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblToRegisterPage = new System.Windows.Forms.Label();
+            this.ChkShowPassword2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -50,41 +51,27 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Password";
             // 
-            // txtID
+            // passwordTextBox
             // 
-            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(351, 180);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(170, 35);
-            this.txtID.TabIndex = 4;
+            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTextBox.Location = new System.Drawing.Point(351, 180);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(170, 35);
+            this.passwordTextBox.TabIndex = 4;
             // 
-            // textBox1
+            // loginTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.loginTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(351, 112);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 35);
-            this.textBox1.TabIndex = 5;
-            // 
-            // btnSearchEntry
-            // 
-            this.btnSearchEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchEntry.BackColor = System.Drawing.Color.Teal;
-            this.btnSearchEntry.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchEntry.Location = new System.Drawing.Point(395, 264);
-            this.btnSearchEntry.Name = "btnSearchEntry";
-            this.btnSearchEntry.Size = new System.Drawing.Size(115, 51);
-            this.btnSearchEntry.TabIndex = 10;
-            this.btnSearchEntry.Text = "Register";
-            this.btnSearchEntry.UseVisualStyleBackColor = false;
+            this.loginTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginTextBox.Location = new System.Drawing.Point(351, 112);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(170, 35);
+            this.loginTextBox.TabIndex = 5;
             // 
             // button1
             // 
@@ -93,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(254, 264);
+            this.button1.Location = new System.Drawing.Point(373, 244);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 51);
             this.button1.TabIndex = 11;
@@ -114,17 +101,44 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Login      ";
             // 
+            // lblToRegisterPage
+            // 
+            this.lblToRegisterPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblToRegisterPage.AutoSize = true;
+            this.lblToRegisterPage.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblToRegisterPage.Font = new System.Drawing.Font("Javanese Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToRegisterPage.Location = new System.Drawing.Point(335, 310);
+            this.lblToRegisterPage.Name = "lblToRegisterPage";
+            this.lblToRegisterPage.Size = new System.Drawing.Size(186, 36);
+            this.lblToRegisterPage.TabIndex = 16;
+            this.lblToRegisterPage.Text = "Not registered? Register";
+            this.lblToRegisterPage.Click += new System.EventHandler(this.lblToRegisterPage_Click);
+            // 
+            // ChkShowPassword2
+            // 
+            this.ChkShowPassword2.AutoSize = true;
+            this.ChkShowPassword2.Location = new System.Drawing.Point(539, 187);
+            this.ChkShowPassword2.Name = "ChkShowPassword2";
+            this.ChkShowPassword2.Size = new System.Drawing.Size(101, 17);
+            this.ChkShowPassword2.TabIndex = 17;
+            this.ChkShowPassword2.Text = "Show password";
+            this.ChkShowPassword2.UseVisualStyleBackColor = true;
+            this.ChkShowPassword2.CheckedChanged += new System.EventHandler(this.ChkShowPassword2_CheckedChanged);
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ChkShowPassword2);
+            this.Controls.Add(this.lblToRegisterPage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSearchEntry);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.loginTextBox);
+            this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.label1);
             this.Name = "LoginPage";
             this.Text = "LoginPage";
@@ -136,10 +150,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnSearchEntry;
+        private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblToRegisterPage;
+        private System.Windows.Forms.CheckBox ChkShowPassword2;
     }
 }

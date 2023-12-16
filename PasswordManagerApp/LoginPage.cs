@@ -16,16 +16,16 @@ namespace PasswordManagerApp
         public LoginPage()
         {
             InitializeComponent();
-
+            passwordTextBox.PasswordChar = '•';
             // Wire up button click event handlers
             button1.Click += button1_Click; // Login button
-            btnSearchEntry.Click += btnSearchEntry_Click; // Register button
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = txtID.Text;
+            string username = loginTextBox.Text;
+            string password = passwordTextBox.Text;
 
             // Create a MySQL connection and command
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -59,12 +59,7 @@ namespace PasswordManagerApp
 
 
 
-        private void btnSearchEntry_Click(object sender, EventArgs e)
-        {
-            RegisterPage registerPage = new RegisterPage();
-            registerPage.Show();
-            this.Hide();
-        }
+       
 
         private bool Login(MySqlConnection connection, string username, string password)
         {
@@ -102,6 +97,18 @@ namespace PasswordManagerApp
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
+        }
+
+        private void lblToRegisterPage_Click(object sender, EventArgs e)
+        {
+            RegisterPage registerPage = new RegisterPage();
+            registerPage.Show();
+            this.Hide();
+        }
+
+        private void ChkShowPassword2_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTextBox.PasswordChar = ChkShowPassword2.Checked ? '\0' : '•';
         }
     }
 }

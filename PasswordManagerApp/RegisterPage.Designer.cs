@@ -33,6 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.lblToLoginPage = new System.Windows.Forms.Label();
+            this.ChkShowPassword1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnRegister
@@ -42,7 +44,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegister.BackColor = System.Drawing.Color.Teal;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(340, 254);
+            this.btnRegister.Location = new System.Drawing.Point(365, 243);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(115, 51);
             this.btnRegister.TabIndex = 10;
@@ -99,12 +101,40 @@
             this.usernameTextBox.Size = new System.Drawing.Size(170, 35);
             this.usernameTextBox.TabIndex = 14;
             // 
+            // lblToLoginPage
+            // 
+            this.lblToLoginPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblToLoginPage.AutoSize = true;
+            this.lblToLoginPage.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblToLoginPage.Font = new System.Drawing.Font("Javanese Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToLoginPage.Location = new System.Drawing.Point(348, 314);
+            this.lblToLoginPage.Name = "lblToLoginPage";
+            this.lblToLoginPage.Size = new System.Drawing.Size(142, 36);
+            this.lblToLoginPage.TabIndex = 15;
+            this.lblToLoginPage.Text = "Registered? Login";
+            this.lblToLoginPage.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // ChkShowPassword1
+            // 
+            this.ChkShowPassword1.AutoSize = true;
+            this.ChkShowPassword1.Location = new System.Drawing.Point(525, 190);
+            this.ChkShowPassword1.Name = "ChkShowPassword1";
+            this.ChkShowPassword1.Size = new System.Drawing.Size(101, 17);
+            this.ChkShowPassword1.TabIndex = 16;
+            this.ChkShowPassword1.Text = "Show password";
+            this.ChkShowPassword1.UseVisualStyleBackColor = true;
+            this.ChkShowPassword1.CheckedChanged += new System.EventHandler(this.ChkShowPassword1_CheckedChanged);
+            // 
             // RegisterPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ChkShowPassword1);
+            this.Controls.Add(this.lblToLoginPage);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.label2);
@@ -124,5 +154,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.Label lblToLoginPage;
+        private System.Windows.Forms.CheckBox ChkShowPassword1;
     }
 }

@@ -13,7 +13,7 @@ namespace PasswordManagerApp
         public RegisterPage()
         {
             InitializeComponent();
-
+            passwordTextBox.PasswordChar = '•';
             // Attach a click event handler to the "Register" button
             btnRegister.Click += BtnRegister_Click;
         }
@@ -80,6 +80,18 @@ namespace PasswordManagerApp
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            LoginPage loginForm = new LoginPage();
+            loginForm.Show(); // Show the login form
+            this.Close();     // Close the current MainPage form
+        }
+
+        private void ChkShowPassword1_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTextBox.PasswordChar = ChkShowPassword1.Checked ? '\0' : '•';
         }
     }
 }
