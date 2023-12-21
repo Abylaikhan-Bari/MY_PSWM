@@ -8,7 +8,7 @@ using System.Text;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
-
+using System.Configuration;
 namespace DatabseInsertApp
 {
     public partial class MainPage : Form
@@ -20,7 +20,8 @@ namespace DatabseInsertApp
         {
             InitializeComponent();
             this.currentUsername = username;
-            con = new MySqlConnection("server=localhost;user=root;database=PasswordManagerDB;password=root;");
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            con = new MySqlConnection(connectionString);
             DisplayData();
             lblCurrentUser.Text = "Current User: " + username;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Ensure full row selection
@@ -527,21 +528,7 @@ namespace DatabseInsertApp
             return jsonData;
         }
 
-        //private string EncryptDecrypt(string text, char xorKey)
-        //{
-        //    // Implement XOR encryption/decryption logic
-        //    var encryptedText = new string(text.ToCharArray().Select(c => (char)(c ^ xorKey)).ToArray());
-        //    return encryptedText;
-        //}
-
-        //private void SaveEncryptedDataToFile(string encryptedData)
-        //{
-        //    // Specify the file path where you want to save the encrypted data (e.g., "exported_data.json")
-        //    string filePath = "C:\\Users\\Abylaikhan Bari\\source\\repos\\PasswordManagerApp\\PasswordManagerApp\\ExportedData\\exported_data.json";
-
-        //    // Save the encrypted data to the specified file
-        //    File.WriteAllText(filePath, encryptedData);
-        //}
+        
 
         // Define the PasswordEntry class to represent the data structure
         public class PasswordEntry

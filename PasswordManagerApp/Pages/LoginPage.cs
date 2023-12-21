@@ -4,13 +4,13 @@ using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using DatabseInsertApp;
+using System.Configuration;
 
 namespace PasswordManagerApp
 {
     public partial class LoginPage : Form
     {
-        // Replace "your_connection_string_here" with your actual connection string
-        private string connectionString = "server=localhost;user=root;database=PasswordManagerDB;password=root;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private int currentUserId = -1;
 
         public LoginPage()

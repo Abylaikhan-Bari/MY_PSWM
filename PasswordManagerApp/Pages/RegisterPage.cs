@@ -3,12 +3,13 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using System.Configuration;
 
 namespace PasswordManagerApp
 {
     public partial class RegisterPage : Form
     {
-        private string connectionString = "server=localhost;user=root;database=PasswordManagerDB;password=root;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         public RegisterPage()
         {
