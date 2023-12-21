@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
 class PasswordManager
 {
     private int currentUserId = -1;
-    private string connectionString = "server=localhost;user=root;database=PasswordManagerDB;password=root;";
+    private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
     private bool runApp = true;
 
     public void Run()
@@ -439,6 +438,7 @@ class PasswordManager
         return res.ToString();
     }
 
+
     private static string HashPassword(string password)
     {
         using (var sha256 = SHA256.Create())
@@ -451,7 +451,7 @@ class PasswordManager
 
 class Program
 {
-    [STAThread]
+    //[STAThread]
     static void Main(string[] args)
     {
         PasswordManager manager = new PasswordManager();
